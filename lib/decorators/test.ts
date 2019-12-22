@@ -1,9 +1,8 @@
+import { Chiron } from "../core/chiron-context";
+import { TestSuite } from "../core/helpers/test-suite";
+
 export const test = (testName?: string): any => (
     target: any, propertyName: string, descriptor: TypedPropertyDescriptor<Function>) => {
-    try {
-        if (descriptor.value) descriptor.value();
-        console.log(testName || propertyName + " Succeeded")
-    } catch (error) {
-        console.log(testName || propertyName + " Failed with error " + error.message);
-    }
+    var suite = new TestSuite(target, testName ? testName : propertyName, descriptor.value as Function);
+    Chiron.addTestSuite(suite);
 }
