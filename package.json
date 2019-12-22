@@ -1,25 +1,25 @@
 {
-    "name": "chiron",
-    "version": "1.0.0",
-    "description": "A Javascript Testing Framework",
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/kalyvasio/chiron.git"
-    },
-    "scripts": {
-      "test": "npm run test",
-      "build": "tsc"
-    },
-    "keywords": [
-      "unit",
-      "testing",
-      "testing",
-      "development"
-    ],
-    "bugs": {
-      "url": "https://github.com/kalyvasio/chiron/issues"
-    },
-    "homepage": "https://github.com/kalyvasio/chiron#readme",
-    "author": "kalyvasio",
-    "license": "MIT"
-  }
+  "name": "chiron",
+  "version": "1.0.0",
+  "description": "A Javascript Testing Framework",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalyvasio/chiron.git"
+  },
+  "scripts": {
+    "test": "npm run test",
+    "build": "tsc"
+  },
+  "keywords": [
+    "unit",
+    "testing",
+    "testing",
+    "development"
+  ],
+  "bugs": {
+    "url": "https://github.com/kalyvasio/chiron/issues"
+  },
+  "homepage": "https://github.com/kalyvasio/chiron#readme",
+  "author": "kalyvasio",
+  "license": "MIT"
+}
