@@ -1,28 +1,34 @@
-import { TestSuite } from "./helpers/test-suite";
+import { TestObject } from "./helpers/entities/test-object";
 import { Executor } from "./executor/executor";
 import { ChironExecutor } from "./executor/chiron-executor";
-import { TestResult } from "./helpers/test-result";
+import { TestResult } from "./helpers/entities/test-result";
 import { Formatter } from "./formatter/formatter";
 import { ChironFormatter } from "./formatter/chiron-formatter";
+import { Dictionary } from "./helpers/structures/dictionary";
 
 export class ChironContext {
-    private testingFunctions: TestSuite[] = [];
+    private testingFunctions: Dictionary<TestObject[]> = new Dictionary<TestObject[]>();
     private executor: Executor = new ChironExecutor();
     private formatter: Formatter = new ChironFormatter();
 
-    public addTestSuite(suite: TestSuite) {
-        this.testingFunctions.push(suite);
+    public addTestSuite(suite: TestObject) {
+        if (!this.testingFunctions[suite.context]) {
+            this.testingFunctions[suite.context] = [];
+        }
+        this.testingFunctions[suite.context].push(suite);
     }
 
     public start() {
-        var results = this.testingFunctions.map(suite => this.executeTestSuite(suite));
-        results.forEach(result => {
-            this.formatter.format(result);
-        })
+        var results = this.executeTests();
+        this.formatResults(results);
     }
 
-    private executeTestSuite(suite: TestSuite): TestResult {
-        return this.executor.execute(suite);
+    private executeTests(): Dictionary<TestResult[]> {
+        return this.executor.executeTests(this.testingFunctions);
+    }
+
+    private formatResults(results: Dictionary<TestResult[]>) {
+        this.formatter.formatResults(results);
     }
 }
 

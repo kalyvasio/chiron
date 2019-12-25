@@ -1,5 +1,7 @@
-import { TestResult } from "../helpers/test-result";
+import { TestResult } from "../helpers/entities/test-result";
+import { Dictionary } from "../helpers/structures/dictionary";
 
 export interface Formatter {
-    format(result: TestResult): void
+    formatResult(result: TestResult): void
+    formatResults(result: Dictionary<TestResult[]>): void
 }

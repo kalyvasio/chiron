@@ -1,6 +1,8 @@
-import { TestSuite } from "../helpers/test-suite";
-import { TestResult } from "../helpers/test-result";
+import { TestObject } from "../helpers/entities/test-object";
+import { TestResult } from "../helpers/entities/test-result";
+import { Dictionary } from "../helpers/structures/dictionary";
 
 export interface Executor {
-    execute(testSuite: TestSuite): TestResult
+    executeTest(test: TestObject): TestResult
+    executeTests(testSuite: Dictionary<TestObject[]>): Dictionary<TestResult[]>
 }
