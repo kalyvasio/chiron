@@ -6,17 +6,37 @@ import { Adder } from "./resources/adder";
 export class Tests {
 
     @test()
-    test_two_plus_three_equals_five() {
+    assert_two_plus_three_equals_five() {
         Assert.same(new Adder().add(2, 3), 5);
     }
 
     @test()
-    test_twenty_minus_three_equals_seventeen() {
+    assert_twenty_minus_three_equals_seventeen() {
         Assert.same(new Deleter().delete(20, 3), 17);
     }
 
     @test("this test fails")
     fail() {
-        Assert.same(new Deleter().delete(10, 3), 17);
+        Assert.notSame(new Deleter().delete(10, 3), 17);
+    }
+
+    @test()
+    assert_collection_contains() {
+        var json1 = { "key1": "value1", "key2": "value2" };
+        var json2 = { "key3": "value3", "key4": "value4" }
+        var array1 = [json1, json2];
+        Assert.collectionContains(array1, { "key2": "value2", "key1": "value1" });
+    }
+
+    @test()
+    assert_arrays_are_equal() {
+        var json1 = { "key1": "value1", "key2": "value2" };
+        var json2 = { "key3": "value3", "key4": "value4" }
+        var array1 = [json1, json2];
+
+        var json3 = { "key2": "value2", "key1": "value1" };
+        var json4 = { "key3": "value3", "key4": "value4" }
+        var array2 = [json4, json3];
+        Assert.arraysEqual(array1, array2);
     }
 }

@@ -41,6 +41,8 @@
     "typescript-require": "^0.2.10",
     "yargs": "^15.0.2",
     "@types/yargs": "^13.0.0",
+    "lodash": "^4.17.15",
+    "@types/lodash": "^4.14.149",
     "@types/node": "^13.1.2"
   },
   "devDependencies": {
