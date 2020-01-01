@@ -22,10 +22,10 @@ export class ChironExecutor implements Executor {
     execute(test: TestObject): TestResult {
         try {
             test.testFunction();
-            return { result: Result.Success, name: test.testTitle } as TestResult;
+            return { result: Result.Success, name: test.testTitle, target: test.target } as TestResult;
         } catch (error) {
             if (error as AssertionException)
-                return { result: Result.Failure, name: test.testTitle, output: error.message } as TestResult
+                return { result: Result.Failure, name: test.testTitle, target: test.target, output: error.message } as TestResult
             else
                 throw error;
         }

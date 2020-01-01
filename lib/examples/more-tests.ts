@@ -1,11 +1,11 @@
+import { testSuite } from "../decorators/test-suite";
 import { test } from "../decorators/test";
 import { Assert } from "../assertions/assert";
-import { Deleter } from "./resources/deleter";
 import { Adder } from "./resources/adder";
-import { testSuite } from "../decorators/test-suite";
+import { Deleter } from "./resources/deleter";
 
-@testSuite()
-export class Tests {
+@testSuite("Tests")
+export class MoreTests {
 
     @test()
     assert_two_plus_three_equals_five() {
@@ -17,7 +17,7 @@ export class Tests {
         Assert.same(new Deleter().delete(20, 3), 17);
     }
 
-    @test("this test fails")
+    @test("this test succeeds")
     fail() {
         Assert.notSame(new Deleter().delete(10, 3), 17);
     }
