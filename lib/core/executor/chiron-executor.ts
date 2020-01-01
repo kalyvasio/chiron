@@ -2,6 +2,7 @@ import { Executor } from "./executor";
 import { TestResult, Result } from "../helpers/entities/test-result";
 import { TestObject } from "../helpers/entities/test-object";
 import { Dictionary } from "../helpers/structures/dictionary";
+import { AssertionException } from "../../assertions/exception/assertion-exception";
 
 export class ChironExecutor implements Executor {
     executeTest(test: TestObject): TestResult {
@@ -23,7 +24,10 @@ export class ChironExecutor implements Executor {
             test.testFunction();
             return { result: Result.Success, name: test.testTitle } as TestResult;
         } catch (error) {
-            return { result: Result.Failure, name: test.testTitle, output: error.message } as TestResult
+            if (error as AssertionException)
+                return { result: Result.Failure, name: test.testTitle, output: error.message } as TestResult
+            else
+                throw error;
         }
     }
 }
